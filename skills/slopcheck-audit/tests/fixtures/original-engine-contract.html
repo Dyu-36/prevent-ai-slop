@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Original engine contract fixture (mock)</title></head>
+<body>
+<p>CONTRACT TEST FIXTURE ONLY. This page stands in for the API exported by the live checker at
+runtime. It is not the deployed engine, and a score produced from it must never be reported as
+the original website's score. It exists so the integration wiring can be tested offline.</p>
+<script>
+(function () {
+  var CAPS = { fingerprint:34, copy:40, layout:36, visual:18, nitpick:18 };
+  window.__slopcheck = {
+    analyze: function (input) {
+      var html = String(input.html || '');
+      var text = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      var findings = [], credits = [];
+      if (text.indexOf('\u2014') !== -1) {
+        findings.push({ cat:'nitpick', key:'dashlite', label:'em dash', pts:2,
+          roast:'one em dash. we saw that.', why:'One dash in the copy.',
+          quotes:[{ note:'fixture copy' }] });
+      }
+      if (/font-family/i.test(html)) {
+        credits.push({ label:'chosen typeface', pts:6, detail:'Chosen font, not a template.' });
+      }
+      return { findings:findings, credits:credits, words:text ? text.split(' ').length : 0, fromBundle:false };
+    },
+    score: function (analysis) {
+      var byCategory = {}, pts = 0, i, key;
+      for (i = 0; i < analysis.findings.length; i++) {
+        key = analysis.findings[i].cat;
+        byCategory[key] = (byCategory[key] || 0) + analysis.findings[i].pts;
+      }
+      for (key in byCategory) pts += Math.min(CAPS[key] == null ? 20 : CAPS[key], byCategory[key]);
+      var nominal = 0;
+      for (i = 0; i < analysis.credits.length; i++) nominal += analysis.credits[i].pts;
+      var minus = Math.min(5, nominal);
+      var effective = Math.max(0, pts + 6 - minus);
+      var score = Math.max(2, Math.min(99, Math.round(100 * (1 - Math.exp(-effective / 32)))));
+      return { score:score, verdict:'okay, you actually have taste', list:analysis.findings,
+        credits:analysis.credits, pts:pts, minus:minus };
+    }
+  };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Original checker UI contract fixture (mock)</title>
+<style>[hidden]{display:none}</style>
+</head>
+<body>
+<p>CONTRACT TEST FIXTURE ONLY. This page imitates the shape of the deployed checker's interface
+so that receipt parsing can be tested offline. It is not the live site.</p>
+<div id="urlPanel"><input id="url" placeholder="https://example.com"><button id="go">Check</button></div>
+<div id="shotPanel" hidden><button id="tabShot">Screenshot</button><input id="file" type="file"></div>
+<p id="err"></p>
+<section id="result" hidden>
+  <h2 id="rcName">aizen.talmetis.com</h2>
+  <div id="rcTotal">9%</div>
+  <p id="verdict">okay, you actually have taste</p>
+  <ul id="items">
+    <li class="credit"><span>chosen typeface</span><span class="n">-6</span></li>
+    <li><span>em dash</span><span class="n">+2</span></li>
+    <li class="muted"><span>baseline</span></li>
+  </ul>
+  <ul id="ev">
+    <li>
+      <span class="tag">nitpick +2</span>
+      <h4>one em dash. we saw that.</h4>
+      <p class="why">One dash in the copy.</p>
+      <div class="quotes"><p>fixture copy</p></div>
+    </li>
+  </ul>
+  <ul id="good"><li><p>Chosen font, not a template.</p></li></ul>
+  <ul id="log"><li>Screenshot captured (1280x860)</li><li>Rules evaluated</li></ul>
+</section>
+<script>
+document.getElementById('go').addEventListener('click', function () {
+  var err = document.getElementById('err');
+  var value = document.getElementById('url').value.trim();
+  if (!value) { err.textContent = 'Enter a URL.'; return; }
+  err.textContent = '';
+  setTimeout(function () { document.getElementById('result').hidden = false; }, 250);
+});
+document.getElementById('tabShot').addEventListener('click', function () {
+  document.getElementById('shotPanel').hidden = false;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "prevent-ai-slop",
+  "description": "Prevent, measure and remove generic AI-template patterns in web UIs built by coding agents.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Dyu-36"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Dyu-36/prevent-ai-slop",
+  "repository": "https://github.com/Dyu-36/prevent-ai-slop",
+  "keywords": [
+    "agent-skills",
+    "frontend",
+    "design-review",
+    "ai-slop",
+    "audit"
+  ]
+}

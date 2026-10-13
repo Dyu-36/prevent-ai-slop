@@ -1,0 +1,3 @@
+interface:
+  display_name: "Prevent AI Slop"
+  short_description: "Build deliberate UIs instead of template output"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Slop Fix"
+  short_description: "Remove flagged template patterns without hurting the page"

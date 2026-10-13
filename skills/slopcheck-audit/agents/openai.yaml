@@ -1,0 +1,3 @@
+interface:
+  display_name: "Slopcheck Audit"
+  short_description: "Score a UI with the original slop checker engine"

@@ -1,0 +1,29 @@
+{
+  "name": "prevent-ai-slop",
+  "owner": {
+    "name": "Dyu-36",
+    "url": "https://github.com/Dyu-36"
+  },
+  "metadata": {
+    "description": "Keep generic AI-template patterns out of agent-built web UIs: design-time rules, honest measurement, and bounded remediation.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "prevent-ai-slop",
+      "source": "./",
+      "description": "Three skills: prevent-ai-slop (design-time rules), slopcheck-audit (measurement with the original checker engine), slop-fix (remediation).",
+      "version": "1.0.0",
+      "author": {
+        "name": "Dyu-36"
+      },
+      "license": "MIT",
+      "keywords": [
+        "frontend",
+        "design-review",
+        "ai-slop",
+        "audit"
+      ]
+    }
+  ]
+}
